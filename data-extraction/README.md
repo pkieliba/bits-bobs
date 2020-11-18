@@ -1,5 +1,7 @@
 # Data Extraction
 
+![data extraction diagram](https://github.com/pkieliba/bits-bobs/blob/master/data-extraction/extract-data.png?raw=true)
+
 Many companies have valuable information in huge amounts of document images (e.g. pdf files) but the volume makes the manual extraction and organizing unfeasible.
 
 Here I have created a system for automatically extracting information about the amount of contracted and realised medical services. This system was originally created for a hospital in Łęczyca, Poland. The hospital 
