@@ -1,0 +1,54 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python3.9 src/train.py params.yaml
+    deps:
+    - path: src/train.py
+      md5: 905e8464c10931f53e2bbcaa40f61b2a
+      size: 3603
+    params:
+      params.yaml:
+        train.batch_size: 32
+        train.dropout: 0.2
+        train.epochs: 10
+        train.epochs_finetuning: 10
+        train.optimizer.class_name: Adam
+        train.optimizer.config.learning_rate: 0.001
+        train.optimizer_finetuning.class_name: Adam
+        train.optimizer_finetuning.config.learning_rate: 1e-05
+        train.random_rotation: 0.1
+    outs:
+    - path: models/model.h5
+      md5: cf46729d128ac3649f21125eca5a0ed3
+      size: 250561952
+    - path: reports/figures/training_finetune.png
+      md5: d2882afde3894b207d6dba9521d66009
+      size: 58275
+    - path: reports/figures/training_frozen.png
+      md5: 4d63a292d00ce2b37f498143d9fa0369
+      size: 51173
+  evaluate:
+    cmd: python3.9 src/evaluate.py models/model.h5
+    deps:
+    - path: models/model.h5
+      md5: cf46729d128ac3649f21125eca5a0ed3
+      size: 250561952
+    - path: src/evaluate.py
+      md5: 4e8d7e2ea31de25dca081bbebed932ba
+      size: 4271
+    outs:
+    - path: reports/figures/test_cm.jpg
+      md5: 13aee87452200f6aaa4f4fa5e8b53185
+      size: 23591
+    - path: reports/figures/train_cm.jpg
+      md5: 28953fe04568701321123de6f9bf2817
+      size: 23825
+    - path: reports/figures/val_cm.jpg
+      md5: 9993433b399a2e9578f41b68ae8042d9
+      size: 23004
+    - path: reports/metrics/evaluation.json
+      md5: f8fb362755edfe4aa8eeb019c962c8d7
+      size: 274
+    - path: reports/metrics/roc_cm.json
+      md5: 7dafb1719cb7af6ad36467bf5831567e
+      size: 178633

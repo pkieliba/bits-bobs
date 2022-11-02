@@ -1,0 +1,34 @@
+stages:
+  train:
+    cmd: python3.9 src/train.py params.yaml
+    deps:
+    - src/train.py
+    params:
+    - train.batch_size
+    - train.dropout
+    - train.epochs
+    - train.epochs_finetuning
+    - train.optimizer.class_name
+    - train.optimizer.config.learning_rate
+    - train.optimizer_finetuning.class_name
+    - train.optimizer_finetuning.config.learning_rate
+    - train.random_rotation
+    outs:
+    - models/model.h5
+    plots:
+    - reports/figures/training_frozen.png
+    - reports/figures/training_finetune.png
+  evaluate:
+    cmd: python3.9 src/evaluate.py models/model.h5
+    deps:
+    - models/model.h5
+    - src/evaluate.py
+    metrics:
+    - reports/metrics/evaluation.json:
+        cache: false
+    plots:
+    - reports/figures/test_cm.jpg
+    - reports/figures/train_cm.jpg
+    - reports/figures/val_cm.jpg
+    - reports/metrics/roc_cm.json:
+        cache: false

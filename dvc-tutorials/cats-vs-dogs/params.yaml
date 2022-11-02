@@ -1,0 +1,20 @@
+train:
+  batch_size: 32
+  random_rotation: 0.1
+  dropout: 0.2
+  epochs: 10
+  epochs_finetuning: 10
+  optimizer:
+    class_name: Adam
+    config:
+      learning_rate: 0.001
+  optimizer_finetuning:
+    class_name: Adam
+    config:
+      learning_rate: 0.00001
+  loss_fun:
+    class_name: BinaryCrossentropy
+    config:
+      from_logits: True
+  metrics: ['binary_accuracy']
+

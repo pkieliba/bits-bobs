@@ -1,0 +1,8 @@
+{
+    "train_binary_accuracy": 0.9962385892868042,
+    "validation_binary_accuracy": 0.9849526882171631,
+    "test_binary_accuracy": 0.979363739490509,
+    "train_loss": 0.013596896082162857,
+    "validation_loss": 0.041748061776161194,
+    "test_loss": 0.0694512128829956
+}
